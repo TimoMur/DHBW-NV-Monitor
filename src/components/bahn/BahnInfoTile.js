@@ -1,11 +1,12 @@
 import React from "react"
 
-function BahnInfoTile() {
+function BahnInfoTile(props) {
+    
     return (
         <tr>
-            <th scope="row"><p class="text-left">S2</p></th>
-            <th><p class="text-center">Schorndorf</p></th>
-            <th><p class="text-right">in 10min</p></th>
+            <th scope="row"><p class="text-left">{props.bahn.line}</p></th>
+            <th><p class="text-center">{props.bahn.destination}</p></th>
+            <th><p class="text-right">in {props.bahn.arrival}min</p></th>
         </tr>
     )
 }

@@ -2,8 +2,17 @@ import React from "react"
 import logo from "./s-bahn-logo.png"
 import "./Bahn.css"
 import BahnInfoTile from "./BahnInfoTile"
+import bahnData from "./bahnTestData"
 
 function Bahn() {
+
+    const trains = bahnData.map(bahn => {
+        return (
+            <BahnInfoTile bahn={bahn}
+            />
+        )
+    })
+
     return (
         <div className="col-8 p-3  border border-dark rounded">
             <div className="row">
@@ -24,9 +33,7 @@ function Bahn() {
                         </tr>
                     </thead>
                     <tbody>
-                        <BahnInfoTile />
-                        <BahnInfoTile />
-                        <BahnInfoTile />
+                        {trains}
                     </tbody>
                 </table>
             </div>
