@@ -1,8 +1,8 @@
 const bahnData = [
     {
-        "line": "S3",
+        "line": "S4",
         "destination": "Backnang",
-        "arrival": 10
+        "arrival": 8
     },
     {
         "line": "S2",

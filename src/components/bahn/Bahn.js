@@ -8,7 +8,8 @@ function Bahn() {
 
     const trains = bahnData.map(bahn => {
         return (
-            <BahnInfoTile bahn={bahn}
+            <BahnInfoTile 
+            bahn={bahn}
             />
         )
     })

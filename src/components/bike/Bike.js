@@ -1,11 +1,20 @@
 import React from "react"
 import logo from "./bike-logo.png"
 import "./bike.css"
+import bikeData from "./bikeTestData"
+import BahnTile from "./BikeTile"
 
 function Bike() {
+
+    const data = bikeData.map(bike => {
+        return (
+            <BahnTile available={bike.available} />
+        )
+    })
+
     return (
         <div className="row border border-dark rounded p-2">
-            <div className="col-3">
+            <div className="col-2">
                 <div>
                     <img className="bike-logo" src={logo} alt="Car Logo" />
                 </div>
@@ -14,19 +23,7 @@ function Bike() {
                 <h1>Bike</h1>
             </div>
             <div className="w-100"></div>
-            <div className="col mt-2 bg-success border border-light">
-                <h1>Frei</h1>
-            </div>
-            <div className="col mt-2 bg-danger border border-light">
-                <h1>Belegt</h1>
-            </div>
-            <div className="w-100"></div>
-            <div className="col mt-2 bg-danger border border-light">
-                <h1>Belegt</h1>
-            </div>
-            <div className="col mt-2 bg-danger border border-light">
-                <h1>Belegt</h1>
-            </div>
+            {data}
         </div >
     )
 }
