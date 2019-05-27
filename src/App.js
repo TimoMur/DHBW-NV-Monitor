@@ -1,22 +1,48 @@
 import React from 'react';
 import Bahn from "./components/bahn/Bahn"
-import Bike from './components/bike/Bike';
-import Car from "./components/car/Car"
+import NVMap from "./components/map/NVMap"
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="container-fluid">
-        <div className="row">
-          <Bahn />
-          <div className="col-4">
-              <Bike />
-              <Car />
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bike: []
+    }
+    
+    this.send()
+
+  }
+
+  send() {
+    axios
+      .get("http://localhost:8080/data")
+      .then(response => {
+        const data = response.data
+        this.setState({ bike: data })
+        console.log(this.state)  
+      })  
+      .catch(function (error) {  
+        console.log(error);  
+      })
+  }
+
+  render() {
+
+    return (
+      <div className="App" >
+        <header className="container-fluid">
+          <div className="row">
+            <Bahn />
+            <div className="col-6">
+              <NVMap bikes={this.state.bike} />
+            </div>
           </div>
-        </div>
-      </header>
-    </div>
-  );
+        </header>
+
+      </div>
+    );
+  }
 }
 
 export default App;
