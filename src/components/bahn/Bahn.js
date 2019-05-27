@@ -15,7 +15,7 @@ function Bahn() {
     })
 
     return (
-        <div className="col-8 p-3  border border-dark rounded">
+        <div className="col-6 p-3  border border-dark rounded">
             <div className="row">
                 <div className="col-1">
                     <img className="bahn-logo" src={logo} alt="S-Bahn Logo" />

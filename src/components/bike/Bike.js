@@ -22,7 +22,6 @@ function Bike() {
             <div className="col-8 mb-auto mt-auto">
                 <h1>Bike</h1>
             </div>
-            <div className="w-100"></div>
             {data}
         </div >
     )
