@@ -16,11 +16,10 @@ class App extends React.Component {
 
   send() {
     axios
-      .get("http://localhost:8080/data")
+      .get("http://localhost:8081/data")
       .then(response => {
         const data = response.data
-        this.setState({ bike: data })
-        console.log(this.state)  
+        this.setState({ bike: data }) 
       })  
       .catch(function (error) {  
         console.log(error);  
