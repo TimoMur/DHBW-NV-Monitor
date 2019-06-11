@@ -5,7 +5,7 @@ class BahnInfoTile extends React.Component {
     constructor(props) {
         super(props)
 
-        const timetabledTime = Math.round((((new Date(this.props.bahn.thisCall.timetabledTime) - new Date()) % 86400000) % 3600000) / 60000); 
+        const timetabledTime = -1 * Math.round((((new Date(this.props.bahn.thisCall.timetabledTime) - new Date()) % 86400000) % 3600000) / 60000); 
 
         this.state = {
             inTime: timetabledTime

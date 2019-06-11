@@ -18,14 +18,14 @@ class Bahn extends React.Component {
             .then(response => {
                 const data = response.data.stopEvents
                 // Ugly as hell
-                const sortedData = data.sort((a, b) => (Math.round((((new Date(a.thisCall.timetabledTime) - new Date()) % 86400000) % 3600000) / 60000) - (Math.round((((new Date(b.thisCall.timetabledTime) - new Date()) % 86400000) % 3600000) / 60000)))               )
+                const sortedData = data.sort((a, b) => ((Math.round((((new Date(b.thisCall.timetabledTime) - new Date()) % 86400000) % 3600000) / 60000)))- Math.round((((new Date(a.thisCall.timetabledTime) - new Date()) % 86400000) % 3600000) / 60000))
                 const vvs = sortedData.map(stopEvent => {
-                        return (
-                            <BahnInfoTile
-                                bahn={stopEvent}
-                            />
-                        )
-                    })
+                    return (
+                        <BahnInfoTile
+                            bahn={stopEvent}
+                        />
+                    )
+                })
 
                 this.setState({ trains: vvs })
 
