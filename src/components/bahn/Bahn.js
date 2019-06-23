@@ -1,5 +1,4 @@
 import React from "react"
-import logo from "./s-bahn-logo.png"
 import "./Bahn.css"
 import BahnInfoTile from "./BahnInfoTile"
 import axios from 'axios'
@@ -18,7 +17,7 @@ class Bahn extends React.Component {
             .then(response => {
                 const data = response.data.stopEvents
                 // Ugly as hell
-                const sortedData = data.sort((a, b) => ((Math.round((((new Date(b.thisCall.timetabledTime) - new Date()) % 86400000) % 3600000) / 60000)))- Math.round((((new Date(a.thisCall.timetabledTime) - new Date()) % 86400000) % 3600000) / 60000))
+                const sortedData = data.sort((a, b) => ((Math.round((((new Date(b.thisCall.timetabledTime) - new Date()) % 86400000) % 3600000) / 60000))) - Math.round((((new Date(a.thisCall.timetabledTime) - new Date()) % 86400000) % 3600000) / 60000))
                 const vvs = sortedData.map(stopEvent => {
                     return (
                         <BahnInfoTile
@@ -40,29 +39,16 @@ class Bahn extends React.Component {
 
     render() {
         return (
-            <div className="col-6 p-3  border border-dark rounded">
-                <div className="row">
-                    <div className="col-1">
-                        <img className="bahn-logo" src={logo} alt="S-Bahn Logo" />
-                    </div>
-                    <div className="col-8 mb-auto mt-auto">
-                        <h1>Bahn</h1>
-                    </div>
+            <div class="container-fluid">
+                <div class="row w-100">
+                    <div class="col-2 border">Haltestelle</div>
+                    <div class="col-1 border">Linie</div>
+                    <div class="col-3 border">Ziel</div>
+                    <div class="col-3 border">&Uuml;ber</div>
+                    <div class="col-2 border">Abfahrt</div>
+                    <div class="col-1 border">Hinweis</div>
                 </div>
-                <div className="ml-2 mr-2 mt-3 p-2 border-top">
-                    <table className="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col"><p class="text-left">Linie</p></th>
-                                <th scope="col"><p class="text-center">Richtung</p></th>
-                                <th scope="col"><p class="text-right">Zeit</p></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.trains}
-                        </tbody>
-                    </table>
-                </div>
+                {this.state.trains}
             </div >
         )
     }
