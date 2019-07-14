@@ -14,23 +14,23 @@ class NVMap extends React.Component {
   }
 
   render() {
+
     const position = [this.state.lat, this.state.lng];
-    const bikePos = this.props.bikes.map(bike => {
+    const bikePos = this.props.bikes.items.map(bike => {
       return (
         <Flinktser bike={bike} />
       )
     })
+
     return (
-      <div id="map">
-        <Map style={{ height: "100vh" }} center={position} zoom={17}>
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          />
-          {bikePos}
-        </Map>
-      </div>
-    );
+      <Map style={{ height: "100%" }} center={position} zoom={17}>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+        {bikePos}
+      </Map>
+    )
   }
 }
 
