@@ -5,30 +5,72 @@ import axios from 'axios';
 import "./App.css"
 import Clock from './components/Clock'
 import logo from './dhbw-logo.jpg'
+import Footer from './components/footer/Footer'
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      bike: []
-    }
 
-    this.send()
-
-  }
-
-  send() {
+  async sendBikeReq() {
     axios
-      .get("http://localhost:8081/data")
+      .get("http://localhost:8081/bike")
       .then(response => {
         const data = response.data
-        this.setState({ bike: data })
+        this.setState({
+          bike: data
+        })
       })
       .catch(function (error) {
         console.log(error);
-      })
+      });
   }
+
+  async sendCarReq() {
+    axios
+      .get("http://localhost:8081/car")
+      .then(response => {
+        const data = response.data
+        this.setState({
+          car: data
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      bike: null,
+      car: null
+    }
+
+    this.update()
+
+  }
+
+  componentDidMount() {
+    this.intervalID = setInterval(
+      () =>this.update(),
+      120000
+    );
+  }
+
+  update() {
+    this.sendBikeReq()
+    this.sendCarReq()
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+
   render() {
+
+    if (this.state.bike === null || this.state.car === null) {
+      return (
+        <h1>Loading...</h1>
+      )
+    }
 
     return (
       <div className="container-fluid p-4" >
@@ -44,15 +86,18 @@ class App extends React.Component {
           </div>
         </div>
         <div className="main row mt-4">
-          <div class="col-8">
+          <div className="col-8">
             <Bahn />
           </div>
           <div className="col-4">
-            <div class="container-fluid">
+            <div className="container-fluid">
               <NVMap bikes={this.state.bike} />
             </div>
           </div>
         </div>
+        {
+          <Footer bikes={this.state.bike} cars={this.state.car} />
+        }
       </div>
     );
   }
