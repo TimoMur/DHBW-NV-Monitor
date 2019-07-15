@@ -90,7 +90,7 @@ class App extends React.Component {
             <Bahn />
           </div>
           <div className="col-4">
-            <div className="container-fluid">
+            <div className="container-fluid h-100">
               <NVMap bikes={this.state.bike} />
             </div>
           </div>

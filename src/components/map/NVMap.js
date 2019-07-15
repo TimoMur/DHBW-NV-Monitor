@@ -23,7 +23,7 @@ class NVMap extends React.Component {
     })
 
     return (
-      <Map style={{ height: "100%" }} center={position} zoom={17}>
+      <Map style={{ height: "100%" }} center={position} zoom={14}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
